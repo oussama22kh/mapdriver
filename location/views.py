@@ -6,10 +6,9 @@ from location.serializer import LocationSerializer
 from .models import Location
 
 
-class location(APIView):
-    def post(self, request):
-        data = JSONParser().parse(request)
-        serializer = LocationSerializer(data=data)
+class locationDetail(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = LocationSerializer(data=request.data)
         if serializer.is_valid():
             location_instance = serializer.save()
             serialized_data = LocationSerializer(location_instance).data
@@ -26,5 +25,12 @@ class location(APIView):
         serializer = LocationSerializer(l, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data,status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class locationList(APIView):
+    def get(self, request):
+        locations = Location.objects.all()
+        serializer = LocationSerializer(locations, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
