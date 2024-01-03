@@ -18,3 +18,6 @@ class LocationSerializer(serializers.ModelSerializer):
             return instance_to_update.first()
         else:
             raise serializers.ValidationError("Instance not found")
+
+    def delete(self, instance):
+        instance.delete(self)
