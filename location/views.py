@@ -31,10 +31,9 @@ class locationDetail(APIView):
     def delete(self, request, pk):
         l = Location.objects.get(pk=pk)
         serializer = LocationSerializer(l, data=request.data)
-        if serializer.is_valid():
-            serializer.delete(l)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.delete(l)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 class locationList(APIView):

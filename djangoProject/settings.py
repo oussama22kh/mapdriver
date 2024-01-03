@@ -26,7 +26,7 @@ DEBUG = True
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUST_ALL_ORIGINS = True
 # CORS_ALLOW_CREDENTIALS = True
-ALLOWED_HOSTS = ['192.168.1.41', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['quiet-otter-80.telebit.io', 'localhost', '127.0.0.1', '0.0.0.0']
 
 # Application definition
 
