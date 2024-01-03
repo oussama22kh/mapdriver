@@ -20,7 +20,7 @@ class locationDetail(APIView):
         serializer = LocationSerializer(locations)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def put(self, request, pk, ):
+    def put(self, request, pk):
         if Location.objects.filter(pk=pk).exists():
             l = Location.objects.get(pk=pk)
             serializer = LocationSerializer(l, data=request.data)
@@ -30,6 +30,7 @@ class locationDetail(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             locationDetail.post(self, request)
+            return Response(status=status.HTTP_102_PROCESSING)
 
     def delete(self, request, pk):
         l = Location.objects.get(pk=pk)
