@@ -7,7 +7,7 @@ from .models import Location
 
 
 class locationDetail(APIView):
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         serializer = LocationSerializer(data=request.data)
         if serializer.is_valid():
             location_instance = serializer.save()
@@ -29,7 +29,7 @@ class locationDetail(APIView):
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
-            locationDetail.post(self, request,pk)
+            locationDetail.post(self, request)
 
     def delete(self, request, pk):
         l = Location.objects.get(pk=pk)
